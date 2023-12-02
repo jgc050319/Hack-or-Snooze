@@ -124,7 +124,7 @@ class User {
 
     // store the login token on the user so it's easy to find for API calls.
     this.loginToken = token;
-  }
+  }}
 
   /** Register new user in API, make User instance & return it.
    *
