@@ -6,13 +6,20 @@ const $body = $("body");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
 const $allStoriesList = $("#all-stories-list");
+const $favoritedStories = $("#forited-stories");
+const $ownStories = $("#my-stories");
+const $storiesContainer = $("#stories-container");
 
+const $storiesLists = $(".stories-list");
 const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
 
+const $navSubmitStory = $("#nav-submit-story");
 const $navLogin = $("#nav-login");
 const $navUserProfile = $("#nav-user-profile");
 const $navLogOut = $("#nav-logout");
+
+const $userProfile = $("#user-profile");
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
@@ -24,6 +31,7 @@ function hidePageComponents() {
     $allStoriesList,
     $loginForm,
     $signupForm,
+    $userProfile
   ];
   components.forEach(c => c.hide());
 }
@@ -31,10 +39,10 @@ function hidePageComponents() {
 /** Overall function to kick off the app. */
 
 async function start() {
-  console.debug("start");
+  console.log("start");
 
   // "Remember logged-in user" and log in, if credentials in localStorage
-  await checkForRememberedUser();
+  console.log (checkForRememberedUser());
   await getAndShowStoriesOnStart();
 
   // if we got a logged-in user

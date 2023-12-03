@@ -110,10 +110,10 @@ class User {
                 username,
                 name,
                 createdAt,
-                favorites = [],
-                ownStories = []
+                favorites: [],
+                ownStories: []
               },
-              token) {
+              token); {
     this.username = username;
     this.name = name;
     this.createdAt = createdAt;
