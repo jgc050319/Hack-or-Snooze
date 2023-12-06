@@ -25,7 +25,7 @@ class Story {
 
   getHostName() {
     // UNIMPLEMENTED: complete this function!
-    return "hostname.com";
+    return new URL(this.url).host;
   }
 }
 
@@ -93,7 +93,7 @@ class StoryList {
       method: "DELETE",
       data: {token: user.loginToken}
     });
-
+  }}
 
 /******************************************************************************
  * User: a user in the system (only used to represent the current user)
@@ -105,7 +105,7 @@ class User {
    *   - token
    */
 
-}
+
   constructor({
                 username,
                 name,
@@ -113,7 +113,7 @@ class User {
                 favorites: [],
                 ownStories: []
               },
-              token); {
+              token) {
     this.username = username;
     this.name = name;
     this.createdAt = createdAt;
@@ -124,7 +124,7 @@ class User {
 
     // store the login token on the user so it's easy to find for API calls.
     this.loginToken = token;
-  }}
+  }
 
   /** Register new user in API, make User instance & return it.
    *
@@ -210,4 +210,25 @@ class User {
       return null;
     }
   }
+async addFavorite (story){
+  this.favorites.push(story);
+  await this._addOrRemoveFavorite("add",story)
+}
+async removeFavorite (story){
+  this.favorites = this.favorites.filter(s => s.storyId !== story.storyId);
+  await this._addOrRemoveFavorite("remove",story);
+}
+async _addOrRemoveFavorite (newState,story){
+  const method = newState === "add" ? "POST" : "DELETE";
+  const token = this.loginToken;
+  await axios({
+    url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+    method: method,
+    data: {token},
+  });
+}
+
+isFavorite(story){
+  return this.favorites.some(s => (s.storyId === story.storyId));
+}
 }
