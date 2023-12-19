@@ -28,8 +28,8 @@ const $userProfile = $("#user-profile");
 
 function hidePageComponents() {
   const components = [
+    // $('submitForm'),
     $storiesLists,
-    $submitForm,
     $loginForm,
     $signupForm,
     $userProfile
@@ -43,7 +43,7 @@ async function start() {
   console.log("start");
 
   // "Remember logged-in user" and log in, if credentials in localStorage
-  console.log (checkForRememberedUser());
+  // console.log (checkForRememberedUser());
   await getAndShowStoriesOnStart();
 
   // if we got a logged-in user

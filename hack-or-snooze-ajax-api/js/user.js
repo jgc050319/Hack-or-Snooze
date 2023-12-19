@@ -26,6 +26,9 @@ async function login(evt) {
 
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
+  console.log(currentUser);
+  $loginForm.hide();
+  $signupForm.hide();
 }
 
 $loginForm.on("submit", login);
@@ -80,7 +83,7 @@ async function checkForRememberedUser() {
 
   // try to log in with these credentials (will be null if login failed)
   currentUser = await User.loginViaStoredCredentials(token, username);
-  console.log(loginToken);
+  // console.log(loginToken);
 }
 
 /** Sync current user information to localStorage.
@@ -109,17 +112,17 @@ function saveUserCredentialsInLocalStorage() {
  */
 
 function updateUIOnUserLogin() {
-  console.debug("updateUIOnUserLogin");
-  hidePageComponents();
-  putStoriesOnPage();
+  // console.debug("updateUIOnUserLogin");
+  // hidePageComponents();
+  // putStoriesOnPage();
   $allStoriesList.show();
 
-  updateNavOnLogin();
-  generateUserProfile();
-  $storiesContainer.show()
+  // updateNavOnLogin();
+  // generateUserProfile();
+  // $storiesContainer.show()
 }
 function generateUserProfile() {
-  console.debug("generateUserProfile");
+  // console.debug("generateUserProfile");
 
   $("#profile-name").text(currentUser.name);
   $("#profile-username").text(currentUser.username);
