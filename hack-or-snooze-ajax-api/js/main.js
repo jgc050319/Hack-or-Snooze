@@ -8,11 +8,16 @@ const $storiesLoadingMsg = $("#stories-loading-msg");
 const $allStoriesList = $("#all-stories-list");
 const $favoritedStories = $("#favorited-stories");
 const $ownStories = $("#my-stories");
-const $storiesContainer = $("#stories-container");
+const $storiesContainer = $("#stories-container")
 
+
+// selector that finds all three story lists
 const $storiesLists = $(".stories-list");
+
 const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
+
+const $submitForm = $("#submit-form");
 
 const $navSubmitStory = $("#nav-submit-story");
 const $navLogin = $("#nav-login");
@@ -28,8 +33,8 @@ const $userProfile = $("#user-profile");
 
 function hidePageComponents() {
   const components = [
-    // $('submitForm'),
     $storiesLists,
+    $submitForm,
     $loginForm,
     $signupForm,
     $userProfile
@@ -37,13 +42,14 @@ function hidePageComponents() {
   components.forEach(c => c.hide());
 }
 
+
 /** Overall function to kick off the app. */
 
 async function start() {
-  console.log("start");
+  console.debug("start");
 
   // "Remember logged-in user" and log in, if credentials in localStorage
-  // console.log (checkForRememberedUser());
+  await checkForRememberedUser();
   await getAndShowStoriesOnStart();
 
   // if we got a logged-in user

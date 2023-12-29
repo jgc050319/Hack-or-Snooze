@@ -93,6 +93,10 @@ class StoryList {
       method: "DELETE",
       data: {token: user.loginToken}
     });
+    this.stories = this.stories.filter(story => story.storyId !== storyId);
+
+    user.ownStories = user.ownStories.filter(s => s.storyId !== storyId);
+    user.favorites = user.favorites.filter(s => s.storyId !== storyId);
   }}
 
 /******************************************************************************
@@ -206,7 +210,7 @@ class User {
         token
       );
     } catch (err) {
-      console.error("loginViaStoredCredentials failed", err);
+      // console.error("loginViaStoredCredentials failed", err);
       return null;
     }
   }

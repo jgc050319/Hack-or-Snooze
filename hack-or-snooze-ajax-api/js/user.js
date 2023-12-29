@@ -26,9 +26,6 @@ async function login(evt) {
 
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
-  console.log(currentUser);
-  $loginForm.hide();
-  $signupForm.hide();
 }
 
 $loginForm.on("submit", login);
@@ -111,18 +108,21 @@ function saveUserCredentialsInLocalStorage() {
  * - generate the user profile part of the page
  */
 
-function updateUIOnUserLogin() {
-  // console.debug("updateUIOnUserLogin");
-  // hidePageComponents();
-  // putStoriesOnPage();
+async function updateUIOnUserLogin() {
+  console.debug("updateUIOnUserLogin");
+
+  hidePageComponents();
+
+  // re-display stories (so that "favorite" stars can appear)
+  putStoriesOnPage();
   $allStoriesList.show();
 
-  // updateNavOnLogin();
-  // generateUserProfile();
-  // $storiesContainer.show()
+  updateNavOnLogin();
+  generateUserProfile();
+  $storiesContainer.show()
 }
 function generateUserProfile() {
-  // console.debug("generateUserProfile");
+  console.debug("generateUserProfile");
 
   $("#profile-name").text(currentUser.name);
   $("#profile-username").text(currentUser.username);
